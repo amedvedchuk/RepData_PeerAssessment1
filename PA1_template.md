@@ -96,15 +96,16 @@ length(activity$steps[is.na(activity$steps)])
 ```
 
 ### 2. Strategy for missing vlue imputing.
-Missing values will be replaced my mean value of particular 5-minute interval. 
-These values already calculated in `meanStepsByInterval` data set.
+Missing values will be replaced by the mean value of particular 5-minute interval. 
+These values already calculated in `meanStepsByInterval$steps`.
 
-### 3. Creating new dataset wit filled steps missing values (`actFilled`)
+### 3. Creating new dataset with filled steps missing values (`actFilled`)
 
 ```r
 actFilled <- cbind(activity, meanStepsByInterval$steps)
 names(actFilled)[4]<-"meanStepsByInterval"
-actFilled$steps[is.na(actFilled$steps)] <- actFilled$meanStepsByInterval[is.na(actFilled$steps)]
+na_steps <- is.na(actFilled$steps)
+actFilled$steps[na_steps] <- actFilled$meanStepsByInterval[na_steps]
 ```
 
 ### 4. Make histogram for new dataset and calculate mean and median.

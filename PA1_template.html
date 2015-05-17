@@ -279,14 +279,15 @@ p
 
 <h3>2. Strategy for missing vlue imputing.</h3>
 
-<p>Missing values will be replaced my mean value of particular 5-minute interval. 
-These values already calculated in <code>meanStepsByInterval</code> data set.</p>
+<p>Missing values will be replaced by the mean value of particular 5-minute interval. 
+These values already calculated in <code>meanStepsByInterval$steps</code>.</p>
 
-<h3>3. Creating new dataset wit filled steps missing values (<code>actFilled</code>)</h3>
+<h3>3. Creating new dataset with filled steps missing values (<code>actFilled</code>)</h3>
 
 <pre><code class="r">actFilled &lt;- cbind(activity, meanStepsByInterval$steps)
 names(actFilled)[4]&lt;-&quot;meanStepsByInterval&quot;
-actFilled$steps[is.na(actFilled$steps)] &lt;- actFilled$meanStepsByInterval[is.na(actFilled$steps)]
+na_steps &lt;- is.na(actFilled$steps)
+actFilled$steps[na_steps] &lt;- actFilled$meanStepsByInterval[na_steps]
 </code></pre>
 
 <h3>4. Make histogram for new dataset and calculate mean and median.</h3>
