@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -21,13 +26,6 @@ stepsByDate <- aggregate(steps ~ date, activity, FUN = sum)
 
 ```r
 library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.1.3
-```
-
-```r
 g <- ggplot(data = stepsByDate, aes(steps))
 p <- g + geom_histogram(binwidth=1000) +
          labs(title = "Histogram of total number of steps taken each day") + 
@@ -35,7 +33,7 @@ p <- g + geom_histogram(binwidth=1000) +
 p
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 **NOTE** According to `binwidth` parameter histogram can looks like different. 
 I decided to use binwidth = 1000 due to diagram seems to be more readable.
@@ -72,7 +70,7 @@ p <- g + geom_line() +
 p
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ### 2. Finding 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps:
 
@@ -122,7 +120,7 @@ p <- g + geom_histogram(binwidth=1000) +
 p
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 
 Mean and median for dataset without NAs:
@@ -164,7 +162,7 @@ median(stepsByDate$steps)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-### 1. Create a new factor variable in the dataset with two levels â€“ â€œweekdayâ€ and â€œweekendâ€
+### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend”
 
 
 ```r
@@ -197,6 +195,6 @@ p <- g + geom_line() +
 p
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
 
 
